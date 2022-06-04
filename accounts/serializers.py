@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
@@ -164,15 +165,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         style={'input_type': 'password'}, write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(
         style={'input_type': 'password'}, write_only=True, required=True)
-    # created_by = serializers.CharField(
-    #     style={'input_type': 'password'}, write_only=True, required=True)
 
     class Meta:
         model = User
         fields = ('email', 'password', 'password2', 'first_name', 'last_name')
-        # extra_kwargs = {
-        #     'created_by': {'write_only': True}
-        # }
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -186,7 +182,7 @@ class InspectorCreateSerializer(RegisterSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            # created_by=validated_data['created_by']
+            created_by=self.request.user
         )
         user.set_password(validated_data['password'])
         user.save()
