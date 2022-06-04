@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('role', 'Inspector')
-        extra_fields.setdefault('created_by', self.request.user)
+        # extra_fields.setdefault('created_by', self.request.user)
         return self._create_user(email, password, **extra_fields)
 
     def create_business_owner(self, email, password=None, **extra_fields):
