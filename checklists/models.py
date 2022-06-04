@@ -49,7 +49,7 @@ class Category(models.Model):
         ordering = ['order']
 
     def __str__(self):
-        return str(self.title)
+        return f"{self.title} ({self.activity})"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, replacements=unicode_letters)
