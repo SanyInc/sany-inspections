@@ -13,7 +13,7 @@ class TypeOfActivityAdmin(admin.ModelAdmin):
     # prepopulated_fields = {"slug": ("title", )}
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("title", )
+    list_display = ("title", "activity",)
     list_filter = ("activity__title", )
     # prepopulated_fields = {"slug": ("title", )}
 
