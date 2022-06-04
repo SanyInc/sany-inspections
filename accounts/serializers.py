@@ -181,8 +181,7 @@ class InspectorCreateSerializer(RegisterSerializer):
         user = User.objects.create_inspector(
             email=validated_data['email'],
             first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            created_by=self.request.user
+            last_name=validated_data['last_name']
         )
         user.set_password(validated_data['password'])
         user.save()
