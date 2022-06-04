@@ -33,8 +33,8 @@ class InspectorViewSet(viewsets.ModelViewSet, mixins.LoginMixin):
             return InspectorLoginSerializer
         return InspectorCreateSerializer
 
-    def perform_create(self, serializer):       
-        serializer.save(created_by=self.request.user)
+    # def perform_create(self, serializer):       
+    #     serializer.save(created_by=self.request.user)
 
 class BusinessOwnerViewSet(viewsets.ModelViewSet, mixins.LoginMixin):
     queryset = BusinessOwner.objects.select_related('user')
