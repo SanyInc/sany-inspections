@@ -43,7 +43,7 @@ class CompletedViewSet(viewsets.ModelViewSet):
                                                 'inspection__inspector__partner__user')
         queryset_detail = queryset.prefetch_related('inspection__answers__question')
 
-        if self.request.user.role == ('Admin' or 'Moderator'):          
+        if self.request.user.role == 'Admin':          
             if self.action == 'list':
                 return queryset
             elif self.action == 'retrieve':
